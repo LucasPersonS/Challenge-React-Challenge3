@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Parceiros from './pages/Parceiros'; 
 import './styles/globalStyles';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 function App() {
     return (
