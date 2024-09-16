@@ -1,221 +1,290 @@
 import styled from 'styled-components';
 
-// Container principal da página
 export const Main = styled.div`
   padding: 20px;
-  margin-top: 80px; /* Espaço adicional para o Header */
+  margin-top: 80px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #e0e6ed);
+
+  @media (max-width: 768px) {
+    margin-top: 120px;
+  }
 `;
 
-// Container da tabela
+export const TableHead = styled.thead`
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 10px 10px 0 0;
+  text-transform: uppercase;
+
+  th {
+    padding: 15px;
+    border-bottom: 2px solid #ffffff;
+    position: relative;
+    z-index: 1;
+    border-radius: 10px 10px 0 0;
+  }
+
+  th::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
+  }
+
+  th:hover::before {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    th {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+`;
+
 export const TableContainer = styled.div`
   width: 100%;
   padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
-// Estilização da tabela
 export const Table = styled.table`
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  min-width: 600px;
 
   th, td {
-    padding: 12px;
-    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #e0e6ed;
     vertical-align: middle;
-    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+  }
+
+  th {
+    background: linear-gradient(135deg, #003366, #0044cc);
+    color: #ffffff;
+    font-size: 16px;
+  }
+
+  td {
+    background-color: #f9f9f9;
+    color: #333;
   }
 
   tbody tr:hover {
-    background-color: #f5f5f5;
+    background-color: #e0e6ed;
+    transition: background-color 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
-// Estilo do cabeçalho da tabela
-export const TableHead = styled.thead`
-  background-color: #00A1FC;
-  color: #fff;
-`;
-
-// Estilo das células da tabela
 export const TableCell = styled.th`
   font-weight: 600;
-  border-radius: 8px;
   font-size: 14px;
+  color: #ffffff;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
-// Estilo das linhas da tabela
 export const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
 `;
 
-// Menu com botões
-export const Menu = styled.div`
+export const CardContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
 `;
 
-// Botão Adicionar
-export const AddButton = styled.button`
-  background-color: #00A1FC;
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s, transform 0.3s;
-
-  i {
-    margin-right: 8px;
-  }
+export const Card = styled.div`
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+  margin: 10px;
 
   &:hover {
-    background-color: #007bb5;
-    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 `;
 
-// Botão Logout
-export const LogoutButton = styled.button`
-  background-color: #FF3F4C;
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s, transform 0.3s;
-
-  i {
-    margin-right: 8px;
-  }
-
-  &:hover {
-    background-color: #d02d34;
-    transform: scale(1.05);
-  }
-`;
-
-// Botão de exclusão
-export const DeleteButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+export const CardTitle = styled.h3`
+  margin: 0;
   font-size: 18px;
-  color: #FF3F4C;
-  transition: color 0.3s;
+  color: #0056b3;
+  border-bottom: 2px solid #00A1FC;
+  padding-bottom: 10px;
+`;
+
+export const CardContent = styled.div`
+  margin-top: 10px;
+`;
+
+export const CardItem = styled.p`
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+`;
+
+export const AddButton = styled.button`
+  background: linear-gradient(135deg, #00A1FC, #0056b3);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: #d02d34;
+    background: linear-gradient(135deg, #0056b3, #00A1FC);
+    transform: scale(1.05);
   }
 `;
 
-// Estilização do modal
-export const Modal = styled.div<{ isOpen: boolean }>`
+export const LogoutButton = styled.button`
+  background: #ff4d4d;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background: #ff1a1a;
+    transform: scale(1.05);
+  }
+`;
+
+export const Modal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
 `;
 
-// Conteúdo do modal
 export const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
   width: 90%;
-  max-width: 800px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-`;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideIn 0.3s ease;
 
-// Botão de fechar do modal
-export const CloseButton = styled.span`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  z-index: 1100;
-
-  &:hover {
-    color: black;
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
-// Estilização do formulário no modal
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #ff4d4d;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  gap: 15px;
+`;
 
-  input,
-  button {
-    margin: 10px 0;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+export const Input = styled.input`
+  padding: 10px;
+  border: 1px solid #e0e6ed;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #00A1FC;
   }
 `;
 
-// Campo de entrada
-export const Input = styled.input`
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-`;
-
-// Botão de envio
 export const SubmitButton = styled.button`
-  background-color: #00A1FC;
+  background: linear-gradient(135deg, #00A1FC, #0056b3);
+  color: #ffffff;
   border: none;
-  color: white;
-  padding: 12px 24px;
+  border-radius: 8px;
+  padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s, transform 0.3s;
-
-  i {
-    margin-right: 8px;
-  }
+  transition: background 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: #007bb5;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #0056b3, #00A1FC);
   }
 `;
 
-// Estilos para media queries (se necessário)
-export const MediaStyles = `
-  @media (max-width: 768px) {
-    /* Adapte os estilos para telas menores, se necessário */
+export const DeleteButton = styled.button`
+  background: #ff4d4d;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background: #ff1a1a;
+    transform: scale(1.05);
   }
 `;

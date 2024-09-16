@@ -8,20 +8,24 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 `;
 
 const TitleText = styled.h1`
-  font-size: 2rem; 
-  color: #f2f2f2; 
-  font-family: 'Arial', sans-serif; 
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.1);
   margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  text-align: center;
 `;
 
 const ChatTitle = () => (
   <TitleContainer>
-    <TitleText>PortoChat</TitleText>
+    <TitleText>PORTOCHAT</TitleText>
   </TitleContainer>
 );
 
@@ -32,7 +36,7 @@ const MainContainer = styled.main`
   padding: 10px;
   width: 100%;
   height: calc(100vh - 160px);
-  margin-top: 10px; /* Reduzi o margin-top */
+  margin-top: 10px;
   gap: 2vh;
 
   @media (max-width: 1280px) {
@@ -45,7 +49,7 @@ const MainContainer = styled.main`
     flex-direction: column;
     gap: 10px;
     padding: 0px;
-    margin-top: 5px; /* Ainda mais reduzido em telas menores */
+    margin-top: 5px;
     overflow: hidden;
   }
 `;
@@ -53,8 +57,8 @@ const MainContainer = styled.main`
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza o conteúdo do chat */
-  width: 100%; /* Ajusta a largura conforme necessário */
+  align-items: center;
+  width: 100%;
 `;
 
 const Home = () => (
@@ -63,7 +67,7 @@ const Home = () => (
     <MainContainer>
       <Slider />
       <ChatContainer>
-        <ChatTitle /> 
+        <ChatTitle />
         <Chat />
       </ChatContainer>
     </MainContainer>

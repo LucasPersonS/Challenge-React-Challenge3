@@ -7,7 +7,11 @@ import {
   TableHead,
   TableCell,
   TableRow,
-  Menu,
+  CardContainer,
+  Card,
+  CardTitle,
+  CardContent,
+  CardItem,
   AddButton,
   LogoutButton,
   Modal,
@@ -16,8 +20,7 @@ import {
   Form,
   Input,
   SubmitButton,
-  DeleteButton,
-  MediaStyles
+  DeleteButton
 } from '../styles/estiloParceiros';
 
 interface Service {
@@ -50,26 +53,15 @@ const Parceiros: React.FC = () => {
       precoPeca: formData.get('precoPeca') as string,
       quantidadePeca: formData.get('quantidadePeca') as string,
       tempoServico: formData.get('tempoServico') as string,
-      descricaoServico: formData.get('descricaoServico') as string
+      descricaoServico: formData.get('descricaoServico') as string,
     };
 
     setServices([...services, newService]);
-    form.reset();
     setIsModalOpen(false);
   };
 
   const handleDeleteService = (index: number) => {
     setServices(services.filter((_, i) => i !== index));
-  };
-
-  const handleCurrencyInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/[^\d]/g, '');
-    value = (Number(value) / 100).toFixed(2).replace('.', ',');
-    e.target.value = `R$ ${value}`;
-  };
-
-  const handleTimeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = `${e.target.value.replace(/\D/g, '')}h`;
   };
 
   return (
@@ -79,18 +71,17 @@ const Parceiros: React.FC = () => {
         <TableContainer>
           <Table>
             <TableHead>
-              <tr>
-                <TableCell>Nome Serviço</TableCell>
-                <TableCell>Valor Serviço</TableCell>
+              <TableRow>
+                <TableCell>Nome do Serviço</TableCell>
+                <TableCell>Valor</TableCell>
                 <TableCell>Serviço no Cliente</TableCell>
-                <TableCell>Taxa Serviço</TableCell>
-                <TableCell>Nome Peça</TableCell>
-                <TableCell>Preço Peça</TableCell>
-                <TableCell>Quantidade Peça</TableCell>
-                <TableCell>Tempo Serviço</TableCell>
-                <TableCell>Descrição Serviço</TableCell>
-                <TableCell>Ação</TableCell>
-              </tr>
+                <TableCell>Taxa</TableCell>
+                <TableCell>Nome da Peça</TableCell>
+                <TableCell>Preço da Peça</TableCell>
+                <TableCell>Quantidade</TableCell>
+                <TableCell>Tempo</TableCell>
+                <TableCell>Descrição</TableCell>
+              </TableRow>
             </TableHead>
             <tbody>
               {services.map((service, index) => (
@@ -104,75 +95,60 @@ const Parceiros: React.FC = () => {
                   <TableCell>{service.quantidadePeca}</TableCell>
                   <TableCell>{service.tempoServico}</TableCell>
                   <TableCell>{service.descricaoServico}</TableCell>
-                  <TableCell>
-                    <DeleteButton onClick={() => handleDeleteService(index)}>
-                      <i className="fas fa-trash-alt"></i>
-                    </DeleteButton>
-                  </TableCell>
                 </TableRow>
               ))}
             </tbody>
           </Table>
-          <Menu>
+          <CardContainer>
+            {services.map((service, index) => (
+              <Card key={index}>
+                <CardTitle>{service.nomeServico}</CardTitle>
+                <CardContent>
+                  <CardItem><strong>Valor:</strong> {service.valorServico}</CardItem>
+                  <CardItem><strong>Serviço no Cliente:</strong> {service.servicoNoCliente}</CardItem>
+                  <CardItem><strong>Taxa:</strong> {service.taxaServico}</CardItem>
+                  <CardItem><strong>Nome da Peça:</strong> {service.nomePeca}</CardItem>
+                  <CardItem><strong>Preço da Peça:</strong> {service.precoPeca}</CardItem>
+                  <CardItem><strong>Quantidade:</strong> {service.quantidadePeca}</CardItem>
+                  <CardItem><strong>Tempo:</strong> {service.tempoServico}</CardItem>
+                  <CardItem><strong>Descrição:</strong> {service.descricaoServico}</CardItem>
+                  <DeleteButton onClick={() => handleDeleteService(index)}>
+                    <i className="fas fa-trash-alt"></i>
+                  </DeleteButton>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContainer>
+          <div>
             <AddButton onClick={() => setIsModalOpen(true)}>
-              <i className="fas fa-plus-circle"></i> Adicionar
+              <i className="fas fa-plus"></i> Adicionar
             </AddButton>
-            <LogoutButton onClick={() => (window.location.href = '/login')}>
+            <LogoutButton>
               <i className="fas fa-sign-out-alt"></i> Logout
             </LogoutButton>
-          </Menu>
+          </div>
         </TableContainer>
-
-        {isModalOpen && (
-          <Modal isOpen={isModalOpen}>
-            <ModalContent>
-              <CloseButton onClick={() => setIsModalOpen(false)}>&times;</CloseButton>
-              <Form id="service-form" onSubmit={handleAddService}>
-                <Input type="text" name="nomeServico" placeholder="Nome Serviço" required />
-                <Input
-                  type="text"
-                  name="valorServico"
-                  className="currency"
-                  placeholder="Valor Serviço"
-                  onChange={handleCurrencyInput}
-                  required
-                />
-                <Input type="text" name="servicoNoCliente" placeholder="Serviço no Cliente" required />
-                <Input
-                  type="text"
-                  name="taxaServico"
-                  className="currency"
-                  placeholder="Taxa Serviço"
-                  onChange={handleCurrencyInput}
-                  required
-                />
-                <Input type="text" name="nomePeca" placeholder="Nome Peça" required />
-                <Input
-                  type="text"
-                  name="precoPeca"
-                  className="currency"
-                  placeholder="Preço Peça"
-                  onChange={handleCurrencyInput}
-                  required
-                />
-                <Input type="number" name="quantidadePeca" placeholder="Quantidade Peça" required />
-                <Input
-                  type="text"
-                  name="tempoServico"
-                  placeholder="Tempo Serviço"
-                  onChange={handleTimeInput}
-                  required
-                />
-                <Input type="text" name="descricaoServico" placeholder="Descrição Serviço" required />
-                <SubmitButton type="submit">
-                  <i className="fas fa-plus-circle"></i> Adicionar Serviço
-                </SubmitButton>
-              </Form>
-            </ModalContent>
-          </Modal>
-        )}
       </Main>
-      <style>{MediaStyles}</style>
+
+      {isModalOpen && (
+        <Modal>
+          <ModalContent>
+            <CloseButton onClick={() => setIsModalOpen(false)}>&times;</CloseButton>
+            <Form onSubmit={handleAddService}>
+              <Input name="nomeServico" placeholder="Nome do Serviço" required />
+              <Input name="valorServico" placeholder="Valor do Serviço" required />
+              <Input name="servicoNoCliente" placeholder="Serviço no Cliente" required />
+              <Input name="taxaServico" placeholder="Taxa do Serviço" required />
+              <Input name="nomePeca" placeholder="Nome da Peça" required />
+              <Input name="precoPeca" placeholder="Preço da Peça" required />
+              <Input name="quantidadePeca" placeholder="Quantidade da Peça" required />
+              <Input name="tempoServico" placeholder="Tempo do Serviço" required />
+              <Input name="descricaoServico" placeholder="Descrição do Serviço" required />
+              <SubmitButton type="submit">Adicionar Serviço</SubmitButton>
+            </Form>
+          </ModalContent>
+        </Modal>
+      )}
     </>
   );
 };

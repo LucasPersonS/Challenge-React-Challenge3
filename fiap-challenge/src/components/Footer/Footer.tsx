@@ -15,9 +15,10 @@ const Footer = () => (
       </div>
     </CompanyInfo>
     <FooterLinks>
-      <li><a href="/">Home</a></li>
-      <li><a href="/help">Ajuda</a></li>
-      <li><a href="/login">Login</a></li>
+        <li><a href="/about">Sobre</a></li>
+        <li><a href="/help">Ajuda</a></li>
+        <li><a href="/integrantes">Integrantes</a></li>
+        <li><a href="/login">Login</a></li>
     </FooterLinks>
   </FooterContainer>
 );

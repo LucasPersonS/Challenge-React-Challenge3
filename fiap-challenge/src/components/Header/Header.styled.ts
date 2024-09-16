@@ -99,6 +99,11 @@ export const NavList = styled.ul<{ isOpen: boolean }>`
       position: relative;
       z-index: 1;
     }
+
+    svg {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
   }
 `;
 

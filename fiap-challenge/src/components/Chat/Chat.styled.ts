@@ -21,7 +21,7 @@ export const ChatContainer = styled.div`
   
   @media (max-width: 480px) {
     margin-left: 0;
-    max-width: 280px;
+    max-width: 2px;
   }
 `;
 
